@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL">
+      <s:complexType name="fin_conta_corrente_cadastro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodCC" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodCCInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_conta_corrente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_banco" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_agencia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_conta_corrente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_inicial" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_data" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_limite" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nao_fluxo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nao_resumo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="observacao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cobr_sn" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="per_juros" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="per_multa" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="bol_instr1" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bol_instr2" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bol_instr3" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bol_instr4" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bol_sn" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cnab_esp" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cobr_esp" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dias_rcomp" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="modalidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cancinstr" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_enviar" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_sincr_analitica" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_dias_venc" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_num_parcelas" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_tipo_tef" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_cod_adm" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_limite_pacelas" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_taxa_loja" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_taxa_adm" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome_gerente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ddd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefone" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="endereco" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bairro" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="complemento" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estado" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cep" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pais" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_inc" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hora_inc" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="user_inc" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_alt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hora_alt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="user_alt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bloqueado" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_cadastroArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:fin_conta_corrente_cadastro[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_pesquisar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="conta_corrente_lista">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodCC" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodCCInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_banco" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_agencia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="conta_corrente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome_gerente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comunicacao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cSincrAnalitica" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nTpTef" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nTaxaAdm" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nDiasVenc" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nNumParc" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nCodAdm" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cUtilPDV" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cModalidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_inicial" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_data" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_limite" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="conta_corrente_listaArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:conta_corrente_lista[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_pesquisar_resposta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="conta_corrente_lista" nillable="true" type="tns:conta_corrente_listaArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_cadastro_response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodCC" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodCCInt" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDesStatus" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_lote_request">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="lote" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="fin_conta_corrente_cadastro" nillable="true" type="tns:fin_conta_corrente_cadastroArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_lote_response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="lote" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDesStatus" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="fin_conta_corrente_chave">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodCC" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodCCInt" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IncluirContaCorrenteSoapIn">
+    <wsdl:part name="fin_conta_corrente_cadastro" type="tns:fin_conta_corrente_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="IncluirContaCorrenteSoapOut">
+    <wsdl:part name="fin_conta_corrente_cadastro_response" type="tns:fin_conta_corrente_cadastro_response" />
+  </wsdl:message>
+  <wsdl:message name="AlterarContaCorrenteSoapIn">
+    <wsdl:part name="fin_conta_corrente_cadastro" type="tns:fin_conta_corrente_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="AlterarContaCorrenteSoapOut">
+    <wsdl:part name="fin_conta_corrente_cadastro_response" type="tns:fin_conta_corrente_cadastro_response" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirContaCorrenteSoapIn">
+    <wsdl:part name="fin_conta_corrente_chave" type="tns:fin_conta_corrente_chave" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirContaCorrenteSoapOut">
+    <wsdl:part name="fin_conta_corrente_cadastro_response" type="tns:fin_conta_corrente_cadastro_response" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarContaCorrenteSoapIn">
+    <wsdl:part name="fin_conta_corrente_chave" type="tns:fin_conta_corrente_chave" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarContaCorrenteSoapOut">
+    <wsdl:part name="fin_conta_corrente_cadastro" type="tns:fin_conta_corrente_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="PesquisarContaCorrenteSoapIn">
+    <wsdl:part name="fin_conta_corrente_pesquisar" type="tns:fin_conta_corrente_pesquisar" />
+  </wsdl:message>
+  <wsdl:message name="PesquisarContaCorrenteSoapOut">
+    <wsdl:part name="fin_conta_corrente_pesquisar_resposta" type="tns:fin_conta_corrente_pesquisar_resposta" />
+  </wsdl:message>
+  <wsdl:message name="UpsertContaCorrenteSoapIn">
+    <wsdl:part name="fin_conta_corrente_cadastro" type="tns:fin_conta_corrente_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="UpsertContaCorrenteSoapOut">
+    <wsdl:part name="fin_conta_corrente_cadastro_response" type="tns:fin_conta_corrente_cadastro_response" />
+  </wsdl:message>
+  <wsdl:message name="UpsertContaCorrentePorLoteSoapIn">
+    <wsdl:part name="fin_conta_corrente_lote_request" type="tns:fin_conta_corrente_lote_request" />
+  </wsdl:message>
+  <wsdl:message name="UpsertContaCorrentePorLoteSoapOut">
+    <wsdl:part name="fin_conta_corrente_lote_response" type="tns:fin_conta_corrente_lote_response" />
+  </wsdl:message>
+  <wsdl:portType name="ContaCorrenteCadastroSoap">
+    <wsdl:operation name="IncluirContaCorrente">
+      <wsdl:input message="tns:IncluirContaCorrenteSoapIn" />
+      <wsdl:output message="tns:IncluirContaCorrenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarContaCorrente">
+      <wsdl:input message="tns:AlterarContaCorrenteSoapIn" />
+      <wsdl:output message="tns:AlterarContaCorrenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirContaCorrente">
+      <wsdl:input message="tns:ExcluirContaCorrenteSoapIn" />
+      <wsdl:output message="tns:ExcluirContaCorrenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarContaCorrente">
+      <wsdl:input message="tns:ConsultarContaCorrenteSoapIn" />
+      <wsdl:output message="tns:ConsultarContaCorrenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PesquisarContaCorrente">
+      <wsdl:input message="tns:PesquisarContaCorrenteSoapIn" />
+      <wsdl:output message="tns:PesquisarContaCorrenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertContaCorrente">
+      <wsdl:input message="tns:UpsertContaCorrenteSoapIn" />
+      <wsdl:output message="tns:UpsertContaCorrenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertContaCorrentePorLote">
+      <wsdl:input message="tns:UpsertContaCorrentePorLoteSoapIn" />
+      <wsdl:output message="tns:UpsertContaCorrentePorLoteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContaCorrenteCadastroSoap" type="tns:ContaCorrenteCadastroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="IncluirContaCorrente">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLIncluirContaCorrente" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarContaCorrente">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLAlterarContaCorrente" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirContaCorrente">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLExcluirContaCorrente" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_chave" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarContaCorrente">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLConsultarContaCorrente" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_chave" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PesquisarContaCorrente">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLPesquisarContaCorrente" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_pesquisar" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_pesquisar_resposta" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertContaCorrente">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLUpsertContaCorrente" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_cadastro_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertContaCorrentePorLote">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDLUpsertContaCorrentePorLote" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_lote_request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/contacorrente/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="fin_conta_corrente_lote_response" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContaCorrenteCadastro">
+    <wsdl:port name="ContaCorrenteCadastroSoap" binding="tns:ContaCorrenteCadastroSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/contacorrente/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

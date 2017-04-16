@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL">
+      <s:complexType name="produto_servico_cadastro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ean" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ncm" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quantidade_estoque" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="csosn_icms" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="unidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unitario" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="cst_icms" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliquota_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="red_base_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliquota_ibpt" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipoItem" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cst_pis" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliquota_pis" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="cst_cofins" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliquota_cofins" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="bloqueado" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_familia" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt_familia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descricao_familia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dadosIbpt" nillable="true" type="tns:dadosIbpt" />
+          <s:element minOccurs="0" maxOccurs="1" name="cest" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cfop" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="peso_liq" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="peso_bruto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="estoque_minimo" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="descr_detalhada" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="obs_internas" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_cadastroArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:produto_servico_cadastro[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="dadosIbpt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="aliqFederal" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliqEstadual" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliqMunicipal" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="fonte" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="chave" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao_status" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_cadastro_chave">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_lote_response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="lote" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao_status" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_lote_request">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="lote" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="produto_servico_cadastro" nillable="true" type="tns:produto_servico_cadastroArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_list_request">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_decrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_hora_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_hora_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_omiepdv" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_familia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_tipo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_descricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_list_response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="produto_servico_resumido" nillable="true" type="tns:produto_servico_resumidoArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_resumido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unitario" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto_servico_resumidoArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:produto_servico_resumido[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="produto_servico_listfull_response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="produto_servico_cadastro" nillable="true" type="tns:produto_servico_cadastroArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IncluirProdutoSoapIn">
+    <wsdl:part name="produto_servico_cadastro" type="tns:produto_servico_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="IncluirProdutoSoapOut">
+    <wsdl:part name="produto_servico_status" type="tns:produto_servico_status" />
+  </wsdl:message>
+  <wsdl:message name="AlterarProdutoSoapIn">
+    <wsdl:part name="produto_servico_cadastro" type="tns:produto_servico_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="AlterarProdutoSoapOut">
+    <wsdl:part name="produto_servico_status" type="tns:produto_servico_status" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirProdutoSoapIn">
+    <wsdl:part name="produto_servico_cadastro_chave" type="tns:produto_servico_cadastro_chave" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirProdutoSoapOut">
+    <wsdl:part name="produto_servico_status" type="tns:produto_servico_status" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarProdutoSoapIn">
+    <wsdl:part name="produto_servico_cadastro_chave" type="tns:produto_servico_cadastro_chave" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarProdutoSoapOut">
+    <wsdl:part name="produto_servico_cadastro" type="tns:produto_servico_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="IncluirProdutosPorLoteSoapIn">
+    <wsdl:part name="produto_servico_lote_request" type="tns:produto_servico_lote_request" />
+  </wsdl:message>
+  <wsdl:message name="IncluirProdutosPorLoteSoapOut">
+    <wsdl:part name="produto_servico_lote_response" type="tns:produto_servico_lote_response" />
+  </wsdl:message>
+  <wsdl:message name="ListarProdutosSoapIn">
+    <wsdl:part name="produto_servico_list_request" type="tns:produto_servico_list_request" />
+  </wsdl:message>
+  <wsdl:message name="ListarProdutosSoapOut">
+    <wsdl:part name="produto_servico_listfull_response" type="tns:produto_servico_listfull_response" />
+  </wsdl:message>
+  <wsdl:message name="ListarProdutosResumidoSoapIn">
+    <wsdl:part name="produto_servico_list_request" type="tns:produto_servico_list_request" />
+  </wsdl:message>
+  <wsdl:message name="ListarProdutosResumidoSoapOut">
+    <wsdl:part name="produto_servico_list_response" type="tns:produto_servico_list_response" />
+  </wsdl:message>
+  <wsdl:message name="UpsertProdutoSoapIn">
+    <wsdl:part name="produto_servico_cadastro" type="tns:produto_servico_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="UpsertProdutoSoapOut">
+    <wsdl:part name="produto_servico_status" type="tns:produto_servico_status" />
+  </wsdl:message>
+  <wsdl:message name="UpsertProdutosPorLoteSoapIn">
+    <wsdl:part name="produto_servico_lote_request" type="tns:produto_servico_lote_request" />
+  </wsdl:message>
+  <wsdl:message name="UpsertProdutosPorLoteSoapOut">
+    <wsdl:part name="produto_servico_lote_response" type="tns:produto_servico_lote_response" />
+  </wsdl:message>
+  <wsdl:portType name="ProdutosCadastroSoap">
+    <wsdl:operation name="IncluirProduto">
+      <wsdl:input message="tns:IncluirProdutoSoapIn" />
+      <wsdl:output message="tns:IncluirProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarProduto">
+      <wsdl:input message="tns:AlterarProdutoSoapIn" />
+      <wsdl:output message="tns:AlterarProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirProduto">
+      <wsdl:input message="tns:ExcluirProdutoSoapIn" />
+      <wsdl:output message="tns:ExcluirProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarProduto">
+      <wsdl:input message="tns:ConsultarProdutoSoapIn" />
+      <wsdl:output message="tns:ConsultarProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IncluirProdutosPorLote">
+      <wsdl:input message="tns:IncluirProdutosPorLoteSoapIn" />
+      <wsdl:output message="tns:IncluirProdutosPorLoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProdutos">
+      <wsdl:input message="tns:ListarProdutosSoapIn" />
+      <wsdl:output message="tns:ListarProdutosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProdutosResumido">
+      <wsdl:input message="tns:ListarProdutosResumidoSoapIn" />
+      <wsdl:output message="tns:ListarProdutosResumidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertProduto">
+      <wsdl:input message="tns:UpsertProdutoSoapIn" />
+      <wsdl:output message="tns:UpsertProdutoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertProdutosPorLote">
+      <wsdl:input message="tns:UpsertProdutosPorLoteSoapIn" />
+      <wsdl:output message="tns:UpsertProdutosPorLoteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProdutosCadastroSoap" type="tns:ProdutosCadastroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="IncluirProduto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLIncluirProduto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_cadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_status" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarProduto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLAlterarProduto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_cadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_status" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirProduto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLExcluirProduto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_cadastro_chave" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_status" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarProduto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLConsultarProduto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_cadastro_chave" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_cadastro" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncluirProdutosPorLote">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLIncluirProdutosPorLote" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_lote_request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_lote_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProdutos">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLListarProdutos" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_list_request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_listfull_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProdutosResumido">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLListarProdutosResumido" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_list_request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_list_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertProduto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLUpsertProduto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_cadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_status" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertProdutosPorLote">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/produtos/?WSDLUpsertProdutosPorLote" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_lote_request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/produtos/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="produto_servico_lote_response" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProdutosCadastro">
+    <wsdl:port name="ProdutosCadastroSoap" binding="tns:ProdutosCadastroSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/produtos/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL">
+      <s:complexType name="priaListRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_cupomfiscal" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaListResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="listaImpostos" nillable="true" type="tns:listaImpostosArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="listaImpostos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ident" nillable="true" type="tns:ident" />
+          <s:element minOccurs="1" maxOccurs="1" name="cabec" nillable="true" type="tns:cabec" />
+          <s:element minOccurs="1" maxOccurs="1" name="ECF" nillable="true" type="tns:ECF" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMS" nillable="true" type="tns:ICMS" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSSN" nillable="true" type="tns:ICMSSN" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSST" nillable="true" type="tns:ICMSST" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSIE" nillable="true" type="tns:ICMSIE" />
+          <s:element minOccurs="1" maxOccurs="1" name="PIS" nillable="true" type="tns:PIS" />
+          <s:element minOccurs="1" maxOccurs="1" name="COFINS" nillable="true" type="tns:COFINS" />
+          <s:element minOccurs="1" maxOccurs="1" name="IPI" nillable="true" type="tns:IPI" />
+          <s:element minOccurs="1" maxOccurs="1" name="InfAdic" nillable="true" type="tns:InfAdic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="listaImpostosArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:listaImpostos[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="cabec">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCupomFiscal" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cUfOrigem" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cUfDestino" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCFOP" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCNAECliente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cContribICMS" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ident">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntImp" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PIS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCSTPIS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cTpCalcPIS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqPIS" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nValUnTribPIS" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="COFINS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCSTCOFINS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cTpCalcCOFINS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqCOFINS" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nValUnTribCOFINS" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IPI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCSTIPI" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cTpCalcIPI" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqIPI" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nValUnTribIPI" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="cEnqIPI" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ECF">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cECFNaoTrib" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cECFSubstTrib" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cECFIsento" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfAdic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cInfAdicNF" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ICMS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCSTICMS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cOrigemICMS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cModBCICMS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nRedBCICMS" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqICMS" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nPercDifICMS" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ICMSSN">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCSOSNICMS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cOrigemICMS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cModBCICMS" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAlCredICMS" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nRedBCICMS" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqICMS" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ICMSST">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cModBCICMSST" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nMargValAdICMSST" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nRedBCICMSST" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqICMSST" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAliqOPICMSST" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCEST" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ICMSIE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nPercFCP" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAlIntUFDest" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nAlInterestUFs" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="nPercICMSIE" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaIncluirImpostoRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ident" nillable="true" type="tns:ident" />
+          <s:element minOccurs="1" maxOccurs="1" name="cabec" nillable="true" type="tns:cabec" />
+          <s:element minOccurs="1" maxOccurs="1" name="ECF" nillable="true" type="tns:ECF" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMS" nillable="true" type="tns:ICMS" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSSN" nillable="true" type="tns:ICMSSN" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSST" nillable="true" type="tns:ICMSST" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSIE" nillable="true" type="tns:ICMSIE" />
+          <s:element minOccurs="1" maxOccurs="1" name="PIS" nillable="true" type="tns:PIS" />
+          <s:element minOccurs="1" maxOccurs="1" name="COFINS" nillable="true" type="tns:COFINS" />
+          <s:element minOccurs="1" maxOccurs="1" name="IPI" nillable="true" type="tns:IPI" />
+          <s:element minOccurs="1" maxOccurs="1" name="InfAdic" nillable="true" type="tns:InfAdic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaIncluirImpostoResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntImp" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDescStatus" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaAlterarImpostoRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ident" nillable="true" type="tns:ident" />
+          <s:element minOccurs="1" maxOccurs="1" name="cabec" nillable="true" type="tns:cabec" />
+          <s:element minOccurs="1" maxOccurs="1" name="ECF" nillable="true" type="tns:ECF" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMS" nillable="true" type="tns:ICMS" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSSN" nillable="true" type="tns:ICMSSN" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSST" nillable="true" type="tns:ICMSST" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSIE" nillable="true" type="tns:ICMSIE" />
+          <s:element minOccurs="1" maxOccurs="1" name="PIS" nillable="true" type="tns:PIS" />
+          <s:element minOccurs="1" maxOccurs="1" name="COFINS" nillable="true" type="tns:COFINS" />
+          <s:element minOccurs="1" maxOccurs="1" name="IPI" nillable="true" type="tns:IPI" />
+          <s:element minOccurs="1" maxOccurs="1" name="InfAdic" nillable="true" type="tns:InfAdic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaAlterarImpostoResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntImp" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDescStatus" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaUpsertImpostoRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ident" nillable="true" type="tns:ident" />
+          <s:element minOccurs="1" maxOccurs="1" name="cabec" nillable="true" type="tns:cabec" />
+          <s:element minOccurs="1" maxOccurs="1" name="ECF" nillable="true" type="tns:ECF" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMS" nillable="true" type="tns:ICMS" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSSN" nillable="true" type="tns:ICMSSN" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSST" nillable="true" type="tns:ICMSST" />
+          <s:element minOccurs="1" maxOccurs="1" name="ICMSIE" nillable="true" type="tns:ICMSIE" />
+          <s:element minOccurs="1" maxOccurs="1" name="PIS" nillable="true" type="tns:PIS" />
+          <s:element minOccurs="1" maxOccurs="1" name="COFINS" nillable="true" type="tns:COFINS" />
+          <s:element minOccurs="1" maxOccurs="1" name="IPI" nillable="true" type="tns:IPI" />
+          <s:element minOccurs="1" maxOccurs="1" name="InfAdic" nillable="true" type="tns:InfAdic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaUpsertImpostoResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntImp" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDescStatus" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaExcluirImpostoRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntImp" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="priaExcluirImpostoResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodProd" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntProd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cCodIntImp" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDescStatus" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IncluirImpostoSoapIn">
+    <wsdl:part name="priaIncluirImpostoRequest" type="tns:priaIncluirImpostoRequest" />
+  </wsdl:message>
+  <wsdl:message name="IncluirImpostoSoapOut">
+    <wsdl:part name="priaIncluirImpostoResponse" type="tns:priaIncluirImpostoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlterarImpostoSoapIn">
+    <wsdl:part name="priaAlterarImpostoRequest" type="tns:priaAlterarImpostoRequest" />
+  </wsdl:message>
+  <wsdl:message name="AlterarImpostoSoapOut">
+    <wsdl:part name="priaAlterarImpostoResponse" type="tns:priaAlterarImpostoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpsertImpostoSoapIn">
+    <wsdl:part name="priaUpsertImpostoRequest" type="tns:priaUpsertImpostoRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpsertImpostoSoapOut">
+    <wsdl:part name="priaUpsertImpostoResponse" type="tns:priaUpsertImpostoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirImpostoSoapIn">
+    <wsdl:part name="priaExcluirImpostoRequest" type="tns:priaExcluirImpostoRequest" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirImpostoSoapOut">
+    <wsdl:part name="priaExcluirImpostoResponse" type="tns:priaExcluirImpostoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarImpostosSoapIn">
+    <wsdl:part name="priaListRequest" type="tns:priaListRequest" />
+  </wsdl:message>
+  <wsdl:message name="ListarImpostosSoapOut">
+    <wsdl:part name="priaListResponse" type="tns:priaListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProdutosImpostosSoap">
+    <wsdl:operation name="IncluirImposto">
+      <wsdl:input message="tns:IncluirImpostoSoapIn" />
+      <wsdl:output message="tns:IncluirImpostoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarImposto">
+      <wsdl:input message="tns:AlterarImpostoSoapIn" />
+      <wsdl:output message="tns:AlterarImpostoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertImposto">
+      <wsdl:input message="tns:UpsertImpostoSoapIn" />
+      <wsdl:output message="tns:UpsertImpostoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirImposto">
+      <wsdl:input message="tns:ExcluirImpostoSoapIn" />
+      <wsdl:output message="tns:ExcluirImpostoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarImpostos">
+      <wsdl:input message="tns:ListarImpostosSoapIn" />
+      <wsdl:output message="tns:ListarImpostosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProdutosImpostosSoap" type="tns:ProdutosImpostosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="IncluirImposto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/prodimp/?WSDLIncluirImposto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaIncluirImpostoRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaIncluirImpostoResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarImposto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/prodimp/?WSDLAlterarImposto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaAlterarImpostoRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaAlterarImpostoResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertImposto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/prodimp/?WSDLUpsertImposto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaUpsertImpostoRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaUpsertImpostoResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirImposto">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/prodimp/?WSDLExcluirImposto" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaExcluirImpostoRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaExcluirImpostoResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarImpostos">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/prodimp/?WSDLListarImpostos" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaListRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/prodimp/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="priaListResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProdutosImpostos">
+    <wsdl:port name="ProdutosImpostosSoap" binding="tns:ProdutosImpostosSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/prodimp/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

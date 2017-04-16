@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/parcelas/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/parcelas/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/parcelas/?WSDL">
+      <s:complexType name="parcelaListarRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_decrescente" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="parcelaListarResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="cadastros" nillable="true" type="tns:cadastrosArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cadastros">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nCodigo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cDescricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nParcelas" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cadastrosArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:cadastros[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListarParcelasSoapIn">
+    <wsdl:part name="parcelaListarRequest" type="tns:parcelaListarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ListarParcelasSoapOut">
+    <wsdl:part name="parcelaListarResponse" type="tns:parcelaListarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ParcelasSoap">
+    <wsdl:operation name="ListarParcelas">
+      <wsdl:input message="tns:ListarParcelasSoapIn" />
+      <wsdl:output message="tns:ListarParcelasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ParcelasSoap" type="tns:ParcelasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ListarParcelas">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/parcelas/?WSDLListarParcelas" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/parcelas/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="parcelaListarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/parcelas/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="parcelaListarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Parcelas">
+    <wsdl:port name="ParcelasSoap" binding="tns:ParcelasSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/parcelas/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/cidades/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/cidades/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/cidades/?WSDL">
+      <s:complexType name="lista_cidades">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cCod" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cNome" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cUF" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nCodIBGE" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nCodSIAFI" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="lista_cidadesArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:lista_cidades[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="cidListarRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_cidade_contendo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_uf" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_cidade" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cidListarResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="lista_cidades" nillable="true" type="tns:lista_cidadesArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PesquisarCidadesSoapIn">
+    <wsdl:part name="cidListarRequest" type="tns:cidListarRequest" />
+  </wsdl:message>
+  <wsdl:message name="PesquisarCidadesSoapOut">
+    <wsdl:part name="cidListarResponse" type="tns:cidListarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CidadesCadastroSoap">
+    <wsdl:operation name="PesquisarCidades">
+      <wsdl:input message="tns:PesquisarCidadesSoapIn" />
+      <wsdl:output message="tns:PesquisarCidadesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CidadesCadastroSoap" type="tns:CidadesCadastroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="PesquisarCidades">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/cidades/?WSDLPesquisarCidades" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/cidades/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="cidListarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/cidades/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="cidListarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CidadesCadastro">
+    <wsdl:port name="CidadesCadastroSoap" binding="tns:CidadesCadastroSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/cidades/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

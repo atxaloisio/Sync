@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL">
+      <s:complexType name="frete">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_transportadora" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_transportadora_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="modalidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="placa" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="placa_estado" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quantidade_volumes" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="especie_volumes" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="marca_volumes" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numeracao_volumes" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="peso_liquido" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="peso_bruto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_frete" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_seguro" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="registro_transportador" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cabecalho">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_previsao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quantidade_itens" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="etapa" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_parcela" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="qtde_parcelas" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="bloqueado" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_empresa" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_empresa_integracao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="informacoes_adicionais">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_categoria" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_conta_corrente" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido_cliente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_contrato" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contato" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dados_adicionais_nf" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="consumidor_final" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="utilizar_emails" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="enviar_email" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codVend" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codProj" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pedido_venda_produto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="cabecalho" nillable="true" type="tns:cabecalho" />
+          <s:element minOccurs="1" maxOccurs="1" name="frete" nillable="true" type="tns:frete" />
+          <s:element minOccurs="1" maxOccurs="1" name="informacoes_adicionais" nillable="true" type="tns:informacoes_adicionais" />
+          <s:element minOccurs="1" maxOccurs="1" name="observacoes" nillable="true" type="tns:observacoes" />
+          <s:element minOccurs="1" maxOccurs="1" name="lista_parcelas" nillable="true" type="tns:lista_parcelas" />
+          <s:element minOccurs="1" maxOccurs="1" name="det" nillable="true" type="tns:detArray" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_pedido" nillable="true" type="tns:total_pedido" />
+          <s:element minOccurs="1" maxOccurs="1" name="infoCadastro" nillable="true" type="tns:infoCadastro" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pedido_venda_produtoArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:pedido_venda_produto[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="observacoes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="obs_venda" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="lista_parcelas">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="parcela" nillable="true" type="tns:parcelaArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="det">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ide" nillable="true" type="tns:ide" />
+          <s:element minOccurs="1" maxOccurs="1" name="produto" nillable="true" type="tns:produto" />
+          <s:element minOccurs="1" maxOccurs="1" name="observacao" nillable="true" type="tns:observacao" />
+          <s:element minOccurs="1" maxOccurs="1" name="inf_adic" nillable="true" type="tns:inf_adic" />
+          <s:element minOccurs="1" maxOccurs="1" name="imposto" nillable="true" type="tns:imposto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="detArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:det[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="total_pedido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="base_calculo_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_calculo_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_pis" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_cofins" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_csll" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_inss" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_IPI" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_ir" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_iss" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_deducoes" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_descontos" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_mercadorias" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_total_pedido" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="infoCadastro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dInc" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hInc" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="uInc" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dAlt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hAlt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="uAlt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cImpAPI" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pedido_venda_produto_response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao_status" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="parcela">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="numero_parcela" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="percentual" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_vencimento" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quantidade_dias" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="parcelaArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:parcela[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="iss">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="base_iss" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_iss" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_iss" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="retem_iss" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="irrf">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_irrf" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_irrf" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="csll">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_csll" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_csll" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="inss">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_inss" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_inss" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cofins_st">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_cofins_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_calculo_cofins_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_cofins_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_cofins_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="qtde_unid_trib_cofins_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unid_trib_cofins_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="margem_cofins_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_cofins_st" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cofins_padrao">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_cofins" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_calculo_cofins" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_cofins" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_cofins" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="qtde_unid_trib_cofins" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unid_trib_cofins" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_cofins" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pis_st">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_pis_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_calculo_pis_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_pis_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_pis_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="qtde_unid_trib_pis_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unid_trib_pis_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="margem_pis_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_pis_st" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pis_padrao">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_pis" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_calculo_pis" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_pis" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_pis" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="qtde_unid_trib_pis" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unid_trib_pis" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_pis" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ipi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_ipi" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_calculo_ipi" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="enquadramento_ipi" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_ipi" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_ipi" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="qtde_unid_trib_ipi" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unid_trib_ipi" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_ipi" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="icms">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_icms" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="origem_icms" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="modalidade_icms" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="perc_red_base_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_icms" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_icms" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="icms_sn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_icms_sn" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="origem_icms_sn" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_icms_sn" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_credito_icms_sn" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_icms_sn" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_icms_sn" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="imposto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="icms_sn" nillable="true" type="tns:icms_sn" />
+          <s:element minOccurs="1" maxOccurs="1" name="icms" nillable="true" type="tns:icms" />
+          <s:element minOccurs="1" maxOccurs="1" name="icms_st" nillable="true" type="tns:icms_st" />
+          <s:element minOccurs="1" maxOccurs="1" name="ipi" nillable="true" type="tns:ipi" />
+          <s:element minOccurs="1" maxOccurs="1" name="pis_padrao" nillable="true" type="tns:pis_padrao" />
+          <s:element minOccurs="1" maxOccurs="1" name="pis_st" nillable="true" type="tns:pis_st" />
+          <s:element minOccurs="1" maxOccurs="1" name="cofins_padrao" nillable="true" type="tns:cofins_padrao" />
+          <s:element minOccurs="1" maxOccurs="1" name="cofins_st" nillable="true" type="tns:cofins_st" />
+          <s:element minOccurs="1" maxOccurs="1" name="inss" nillable="true" type="tns:inss" />
+          <s:element minOccurs="1" maxOccurs="1" name="csll" nillable="true" type="tns:csll" />
+          <s:element minOccurs="1" maxOccurs="1" name="irrf" nillable="true" type="tns:irrf" />
+          <s:element minOccurs="1" maxOccurs="1" name="iss" nillable="true" type="tns:iss" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="icms_st">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cod_sit_trib_icms_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="modalidade_icms_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="perc_red_base_icms_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_icms_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_icms_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="margem_icms_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_icms_st" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliq_icms_opprop" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="inf_adic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="peso_liquido" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="peso_bruto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido_compra" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="item_pedido_compra" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="dados_adicionais_item" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nao_movimentar_estoque" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nao_gerar_financeiro" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="produto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_produto_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cfop" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ncm" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ean" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="unidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quantidade" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_unitario" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_mercadoria" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_desconto" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="percentual_desconto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_desconto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_deducao" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_total" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ide">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_item_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_item" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="simples_nacional" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="regra_impostos" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="observacao">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="obs_item" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pvpListarRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_cliente" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pvpConsultarResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pedido_venda_produto" nillable="true" type="tns:pedido_venda_produto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pvpListarResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="pedido_venda_produto" nillable="true" type="tns:pedido_venda_produtoArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pvpConsultarRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="mensagens">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="cCodigo" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDescricao" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCorrecao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="mensagensArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:mensagens[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ListaNfe">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="numero_lote" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="status_lote" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="recibo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="contingencia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_nfe" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="status_nfe" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="chave_nfe" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="protocolo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_emissao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hora_emissao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_fatura" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hora_fatura" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_saida" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hora_saida" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="mensagens" nillable="true" type="tns:mensagensArray" />
+          <s:element minOccurs="0" maxOccurs="1" name="xml_distr" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="danfe" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListaNfeArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:ListaNfe[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="pvpStatusRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido_integracao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pvpStatusResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pedido_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="etapa" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cancelada" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="faturada" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ambiente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="valor_total_pedido" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListaNfe" nillable="true" type="tns:ListaNfeArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IncluirPedidoSoapIn">
+    <wsdl:part name="pedido_venda_produto" type="tns:pedido_venda_produto" />
+  </wsdl:message>
+  <wsdl:message name="IncluirPedidoSoapOut">
+    <wsdl:part name="pedido_venda_produto_response" type="tns:pedido_venda_produto_response" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarPedidoSoapIn">
+    <wsdl:part name="pvpConsultarRequest" type="tns:pvpConsultarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarPedidoSoapOut">
+    <wsdl:part name="pvpConsultarResponse" type="tns:pvpConsultarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarPedidosSoapIn">
+    <wsdl:part name="pvpListarRequest" type="tns:pvpListarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ListarPedidosSoapOut">
+    <wsdl:part name="pvpListarResponse" type="tns:pvpListarResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatusPedidoSoapIn">
+    <wsdl:part name="pvpStatusRequest" type="tns:pvpStatusRequest" />
+  </wsdl:message>
+  <wsdl:message name="StatusPedidoSoapOut">
+    <wsdl:part name="pvpStatusResponse" type="tns:pvpStatusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PedidoVendaProdutoSoap">
+    <wsdl:operation name="IncluirPedido">
+      <wsdl:input message="tns:IncluirPedidoSoapIn" />
+      <wsdl:output message="tns:IncluirPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPedido">
+      <wsdl:input message="tns:ConsultarPedidoSoapIn" />
+      <wsdl:output message="tns:ConsultarPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPedidos">
+      <wsdl:input message="tns:ListarPedidosSoapIn" />
+      <wsdl:output message="tns:ListarPedidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatusPedido">
+      <wsdl:input message="tns:StatusPedidoSoapIn" />
+      <wsdl:output message="tns:StatusPedidoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PedidoVendaProdutoSoap" type="tns:PedidoVendaProdutoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="IncluirPedido">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/produtos/pedido/?WSDLIncluirPedido" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pedido_venda_produto" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pedido_venda_produto_response" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPedido">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/produtos/pedido/?WSDLConsultarPedido" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pvpConsultarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pvpConsultarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPedidos">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/produtos/pedido/?WSDLListarPedidos" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pvpListarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pvpListarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatusPedido">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/produtos/pedido/?WSDLStatusPedido" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pvpStatusRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/produtos/pedido/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pvpStatusResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PedidoVendaProduto">
+    <wsdl:port name="PedidoVendaProdutoSoap" binding="tns:PedidoVendaProdutoSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/produtos/pedido/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

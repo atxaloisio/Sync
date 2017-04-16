@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL">
+      <s:complexType name="cadastro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cadastroArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:cadastro[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="vendListarRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendListarResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="cadastro" nillable="true" type="tns:cadastroArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendConsultarRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendConsultarResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendAlterarRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendUpsertRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendincluirRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendExcluirRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendIncluirResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendAlterarResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendUpsertResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vendExcluirResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="descricao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IncluirVendedorSoapIn">
+    <wsdl:part name="vendincluirRequest" type="tns:vendincluirRequest" />
+  </wsdl:message>
+  <wsdl:message name="IncluirVendedorSoapOut">
+    <wsdl:part name="vendIncluirResponse" type="tns:vendIncluirResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlterarVendedorSoapIn">
+    <wsdl:part name="vendAlterarRequest" type="tns:vendAlterarRequest" />
+  </wsdl:message>
+  <wsdl:message name="AlterarVendedorSoapOut">
+    <wsdl:part name="vendAlterarResponse" type="tns:vendAlterarResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpsertVendedorSoapIn">
+    <wsdl:part name="vendUpsertRequest" type="tns:vendUpsertRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpsertVendedorSoapOut">
+    <wsdl:part name="vendUpsertResponse" type="tns:vendUpsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirVendedorSoapIn">
+    <wsdl:part name="vendExcluirRequest" type="tns:vendExcluirRequest" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirVendedorSoapOut">
+    <wsdl:part name="vendExcluirResponse" type="tns:vendExcluirResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarVendedorSoapIn">
+    <wsdl:part name="vendConsultarRequest" type="tns:vendConsultarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarVendedorSoapOut">
+    <wsdl:part name="vendConsultarResponse" type="tns:vendConsultarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarVendedoresSoapIn">
+    <wsdl:part name="vendListarRequest" type="tns:vendListarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ListarVendedoresSoapOut">
+    <wsdl:part name="vendListarResponse" type="tns:vendListarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="VendedoresCadastroSoap">
+    <wsdl:operation name="IncluirVendedor">
+      <wsdl:input message="tns:IncluirVendedorSoapIn" />
+      <wsdl:output message="tns:IncluirVendedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarVendedor">
+      <wsdl:input message="tns:AlterarVendedorSoapIn" />
+      <wsdl:output message="tns:AlterarVendedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertVendedor">
+      <wsdl:input message="tns:UpsertVendedorSoapIn" />
+      <wsdl:output message="tns:UpsertVendedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirVendedor">
+      <wsdl:input message="tns:ExcluirVendedorSoapIn" />
+      <wsdl:output message="tns:ExcluirVendedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarVendedor">
+      <wsdl:input message="tns:ConsultarVendedorSoapIn" />
+      <wsdl:output message="tns:ConsultarVendedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarVendedores">
+      <wsdl:input message="tns:ListarVendedoresSoapIn" />
+      <wsdl:output message="tns:ListarVendedoresSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VendedoresCadastroSoap" type="tns:VendedoresCadastroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="IncluirVendedor">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/vendedores/?WSDLIncluirVendedor" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendincluirRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendIncluirResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarVendedor">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/vendedores/?WSDLAlterarVendedor" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendAlterarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendAlterarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertVendedor">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/vendedores/?WSDLUpsertVendedor" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendUpsertRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendUpsertResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirVendedor">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/vendedores/?WSDLExcluirVendedor" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendExcluirRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendExcluirResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarVendedor">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/vendedores/?WSDLConsultarVendedor" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendConsultarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendConsultarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarVendedores">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/vendedores/?WSDLListarVendedores" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendListarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/vendedores/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vendListarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VendedoresCadastro">
+    <wsdl:port name="VendedoresCadastroSoap" binding="tns:VendedoresCadastroSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/vendedores/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
