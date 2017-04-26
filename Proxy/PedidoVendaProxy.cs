@@ -276,6 +276,8 @@ namespace Sync
             {
                 ped.informacoes_adicionais = new informacoes_adicionais();
                 ped.informacoes_adicionais.codVend = pedido.pedido_infoadic.FirstOrDefault().codVend.ToString();
+                ped.informacoes_adicionais.codigo_categoria = pedido.pedido_infoadic.FirstOrDefault().codigo_categoria;
+                ped.informacoes_adicionais.codigo_conta_corrente = pedido.pedido_infoadic.FirstOrDefault().codigo_conta_corrente.ToString();                
             }
             
                 

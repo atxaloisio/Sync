@@ -72,10 +72,18 @@ namespace Sync
                     //chama o metodo que faz o inset da cliente na base.
                     long? codigo_cliente_omie = Convert.ToInt64(item.codigo_cliente_omie);
 
-                    if (clienteBLL.getCliente(c => c.codigo_cliente_omie == codigo_cliente_omie).Count() <= 0)
+                    List<Cliente> ClienteList = clienteBLL.getCliente(c => c.codigo_cliente_omie == codigo_cliente_omie);
+
+                    if (ClienteList.Count() <= 0)
                     {
                         Cliente cliente = toCliente(item);
                         clienteBLL.AdicionarCliente(cliente);
+                    }
+                    else
+                    {
+                        Cliente cliente = ClienteList.First();
+                        cliente = toCliente(item, cliente);
+                        clienteBLL.AlterarCliente(cliente);
                     }
                     RegistroAtual++;
                     if (ProgressBar != null)
@@ -108,52 +116,50 @@ namespace Sync
         {
         }
 
-        private Cliente toCliente(clientes_cadastro p, Int64 id = -1)
+        private Cliente toCliente(clientes_cadastro p, Cliente cliente = null)
         {
-            Cliente cliente = new Cliente()
+            if (cliente == null)
             {
-                //Campos "chave"
-                codigo_cliente_integracao = p.codigo_cliente_integracao,
-                codigo_cliente_omie = Convert.ToInt64(p.codigo_cliente_omie),
-                //Campos de identificação
-                cnpj_cpf = p.cnpj_cpf,
-                razao_social = p.razao_social,
-                nome_fantasia = p.nome_fantasia,
-                //Campos de Endereço
-                logradouro = p.logradouro,
-                endereco = p.endereco,
-                endereco_numero = p.endereco_numero,
-                complemento = p.complemento,
-                bairro = p.bairro,
-                cidade = p.cidade,
-                estado = p.estado,
-                cep = p.cep,
-                codigo_pais = p.codigo_pais,
-                //Contatos
-                contato = p.contato,
-                telefone1_ddd = p.telefone1_ddd,
-                telefone1_numero = p.telefone1_numero,
-                telefone2_ddd = p.telefone2_ddd,
-                telefone2_numero = p.telefone2_numero,
-                fax_ddd = p.fax_ddd,
-                fax_numero = p.fax_numero,
-                email = p.email,
-                homepage = p.homepage,
-                observacao = p.observacao,
-                inscricao_municipal = p.inscricao_municipal,
-                inscricao_estadual = p.inscricao_estadual,
-                inscricao_suframa = p.inscricao_suframa,
-                pessoa_fisica = p.pessoa_fisica,
-                optante_simples_nacional = p.optante_simples_nacional,
-                bloqueado = p.bloqueado,
-                importado_api = p.importado_api
-            };
-
-            if (id != -1)
-            {
-                cliente.Id = id;
+                cliente = new Cliente();
             }
 
+
+            //Campos "chave"
+            cliente.codigo_cliente_integracao = p.codigo_cliente_integracao;
+            cliente.codigo_cliente_omie = Convert.ToInt64(p.codigo_cliente_omie);
+            //Campos de identificação
+            cliente.cnpj_cpf = p.cnpj_cpf;
+            cliente.razao_social = p.razao_social;
+            cliente.nome_fantasia = p.nome_fantasia;
+            //Campos de Endereço
+            cliente.logradouro = p.logradouro;
+            cliente.endereco = p.endereco;
+            cliente.endereco_numero = p.endereco_numero;
+            cliente.complemento = p.complemento;
+            cliente.bairro = p.bairro;
+            cliente.cidade = p.cidade;
+            cliente.estado = p.estado;
+            cliente.cep = p.cep;
+            cliente.codigo_pais = p.codigo_pais;
+            //Contatos
+            cliente.contato = p.contato;
+            cliente.telefone1_ddd = p.telefone1_ddd;
+            cliente.telefone1_numero = p.telefone1_numero;
+            cliente.telefone2_ddd = p.telefone2_ddd;
+            cliente.telefone2_numero = p.telefone2_numero;
+            cliente.fax_ddd = p.fax_ddd;
+            cliente.fax_numero = p.fax_numero;
+            cliente.email = p.email;
+            cliente.homepage = p.homepage;
+            cliente.observacao = p.observacao;
+            cliente.inscricao_municipal = p.inscricao_municipal;
+            cliente.inscricao_estadual = p.inscricao_estadual;
+            cliente.inscricao_suframa = p.inscricao_suframa;
+            cliente.pessoa_fisica = p.pessoa_fisica;
+            cliente.optante_simples_nacional = p.optante_simples_nacional;
+            cliente.bloqueado = p.bloqueado;
+            cliente.importado_api = p.importado_api;
+            
             TagBLL tagBLL = new TagBLL();
 
             foreach (var item in p.tags)
@@ -162,10 +168,15 @@ namespace Sync
                 Tag tg = tagBLL.getTag(item.tag.Trim()).FirstOrDefault();
                 if (tg != null)
                 {
-                    Cliente_Tag ct = new Cliente_Tag();
-                    ct.Id_tag = tg.Id;
-                    ct.tag = tg.tag1;
-                    cliente.cliente_tag.Add(ct);
+                    if (cliente.cliente_tag.Where(c =>c.tag == tg.tag1).Count() <= 0)
+                    {
+                        Cliente_Tag ct = new Cliente_Tag();
+                        //ct.Id_cliente = cliente.Id;
+                        ct.Id_tag = tg.Id;
+                        ct.tag = tg.tag1;
+                        cliente.cliente_tag.Add(ct);
+                    }
+                    
                 }
 
             }

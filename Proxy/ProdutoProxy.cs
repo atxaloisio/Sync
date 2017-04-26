@@ -40,7 +40,7 @@ namespace Sync
                     Mensagem.Text = "Sincronizando cadastro de  Produtos";
                     Application.DoEvents();
                 }
-                                
+
                 filtro.apenas_importado_api = "N";
                 if (pagina == -1)
                 {
@@ -68,7 +68,7 @@ namespace Sync
 
                     ProgressBar.Maximum = NrTotalRegistro;
                 }
-                
+
                 foreach (produto_servico_cadastro item in resp.produto_servico_cadastro)
                 {
                     //chama o metodo que faz o inset da Produto na base.
@@ -78,7 +78,7 @@ namespace Sync
                         Produto Produto = toProduto(item);
                         ProdutoBLL.AdicionarProduto(Produto);
                     }
-                    
+
                     RegistroAtual++;
                     if (ProgressBar != null)
                     {
@@ -91,7 +91,7 @@ namespace Sync
                             Application.DoEvents();
                         }
                     }
-                    
+
                 }
 
                 if (Convert.ToInt32(resp.total_de_paginas) > pagina)
@@ -107,8 +107,57 @@ namespace Sync
             }
         }
 
-        public void UpdateProduto(Int64 id = -1)
+        public void UpdateProduto(Produto produto)
         {
+        }
+
+        public string ExcluirProduto(Produto produto)
+        {
+            string retorno = string.Empty;
+            try
+            {
+                if (produto != null)
+                {
+                    produto_servico_cadastro_chave filtro = new produto_servico_cadastro_chave();
+                    filtro.codigo = produto.codigo;
+                    filtro.codigo_produto = produto.codigo_produto.ToString();
+                    filtro.codigo_produto_integracao = produto.codigo_produto_integracao;
+
+                    produto_servico_status resp = soapClient.ExcluirProduto(filtro);
+
+                    retorno = resp.descricao_status;
+                }
+                return retorno;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<string> ExcluiProdutoLote()
+        {
+            List<string> retornoList = new List<string>();
+            List<Produto> ProdutoList = ProdutoBLL.getProduto();
+            try
+            {
+                foreach (Produto item in ProdutoList)
+                {
+                    string retorno = string.Empty;
+                    retorno = ExcluirProduto(item);
+                    if (!string.IsNullOrEmpty(retorno))
+                    {
+                        retornoList.Add(retorno);
+                    }
+                }
+                return retornoList;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
 
         private Produto toProduto(produto_servico_cadastro p, Int64 id = -1)
@@ -172,7 +221,7 @@ namespace Sync
 
         public void Dispose()
         {
-            ProdutoBLL.Dispose();           
+            ProdutoBLL.Dispose();
         }
     }
 }
