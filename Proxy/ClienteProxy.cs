@@ -16,19 +16,32 @@ namespace Sync
     public class ClienteProxy : Proxy, IDisposable
     {
         private ClientesCadastroSoapClient soapClient;
-        private ClienteBLL clienteBLL;
+        private ClienteBLL clienteBLL;        
         public ClienteProxy()
         {
             soapClient = new ClientesCadastroSoapClient();
 
             soapClient.Endpoint.Address = setDadosAutenticacao(soapClient.Endpoint.Address);
-
-            clienteBLL = new ClienteBLL();
+                        
             //Configura os eventos
 
         }
 
         public void SyncCadastroCliente(int pagina = -1)
+        {
+            try
+            {
+                SyncLocalToOmie();
+                SyncOmieToLocal(pagina);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        private void SyncOmieToLocal(int pagina = -1)
         {
             try
             {
@@ -102,7 +115,7 @@ namespace Sync
                 if (Convert.ToInt32(resp.total_de_paginas) > pagina)
                 {
                     pagina++;
-                    SyncCadastroCliente(pagina);
+                    SyncOmieToLocal(pagina);
                 }
             }
             catch (Exception)
@@ -112,8 +125,196 @@ namespace Sync
             }
         }
 
-        public void UpdateClientes(Int64 id = -1)
+        private void SyncLocalToOmie()
         {
+            try
+            {
+                if (Mensagem != null)
+                {
+                    Mensagem.Text = "Sincronizando cadastro de Clientes";
+                    Application.DoEvents();
+                }
+                                
+                List<Cliente> ClienteList = clienteBLL.getCliente(p => p.sincronizar == "S", true);
+
+                if (ProgressBar != null)
+                {
+                    NrTotalRegistro = ClienteList.Count();
+                    NrTotalRegistro += 1;
+                    ProgressBar.Maximum = NrTotalRegistro;
+                }
+
+                foreach (Cliente item in ClienteList)
+                {
+                    RegistroAtual++;
+                    if (ProgressBar != null)
+                    {
+                        ProgressBar.Value = RegistroAtual;
+                        ProgressBar.Refresh();
+                        Application.DoEvents();
+                        if (QtdRegistros != null)
+                        {
+                            QtdRegistros.Text = RegistroAtual.ToString() + " de " + NrTotalRegistro.ToString();
+                            Application.DoEvents();
+                        }
+                    }
+
+                    if (item.codigo_cliente_omie <= 0)
+                    {
+                        IncluirClientes(item);
+                    }
+                    else
+                    {
+                        AlterarClientes(item);
+                    }
+
+                }
+                RegistroAtual = 0;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public string AlterarClientes(Cliente cliente)
+        {
+            string retorno = string.Empty;
+            try
+            {                
+                clientes_cadastro _cliente = fromCliente(cliente);
+
+                clientes_status resp = soapClient.AlterarCliente(_cliente);
+
+                if (resp != null)
+                {
+                    clienteBLL = new ClienteBLL();
+                    clienteBLL.UsuarioLogado = usuario;
+                    Cliente cli = clienteBLL.Localizar(cliente.Id);
+                    cli.codigo_cliente_omie = Convert.ToInt64(resp.codigo_cliente_omie);
+                    cli.sincronizar = "N";
+                    clienteBLL.AlterarCliente(cli);
+                    retorno = resp.descricao_status;
+                }
+
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public string IncluirClientes(Cliente cliente)
+        {
+            string retorno = string.Empty;
+            try
+            {
+                clientes_cadastro _cliente = fromCliente(cliente);
+
+                clientes_status resp = soapClient.IncluirCliente(_cliente);
+
+                if (resp != null)
+                {
+                    clienteBLL = new ClienteBLL();
+                    clienteBLL.UsuarioLogado = usuario;
+                    cliente.codigo_cliente_omie = Convert.ToInt64(resp.codigo_cliente_omie);
+                    cliente.sincronizar = "N";
+                    clienteBLL.AlterarCliente(cliente);
+                    retorno = resp.descricao_status;
+                }
+                
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public string ExcluirClientes(Cliente cliente)
+        {
+            string retorno = string.Empty;
+            try
+            {
+                clientes_cadastro_chave _cliente = new clientes_cadastro_chave();
+
+                _cliente.codigo_cliente_integracao = cliente.codigo_cliente_integracao;
+                _cliente.codigo_cliente_omie = cliente.codigo_cliente_omie.ToString();                                
+                
+                clientes_status resp = soapClient.ExcluirCliente(_cliente);
+
+                if (resp != null)
+                {                     
+                    retorno = resp.descricao_status;
+                }
+
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private clientes_cadastro fromCliente(Cliente cliente)
+        {
+            clientes_cadastro cc = new clientes_cadastro();
+            //Campos "chave"
+            cc.codigo_cliente_integracao = cliente.codigo_cliente_integracao;
+            if (cliente.codigo_cliente_omie > 0)
+            {
+                cc.codigo_cliente_omie = cliente.codigo_cliente_omie.ToString();
+            }
+            //Campos de identificação
+            cc.cnpj_cpf = cliente.cnpj_cpf;
+            cc.razao_social = cliente.razao_social;
+            cc.nome_fantasia = cliente.nome_fantasia;
+            //Campos de Endereço
+            cc.logradouro = cliente.logradouro;
+            cc.endereco = cliente.endereco;
+            cc.endereco_numero = cliente.endereco_numero;
+            cc.complemento = cliente.complemento;
+            cc.bairro = cliente.bairro;
+            cc.cidade = cliente.cidade;
+            cc.estado = cliente.estado;
+            cc.cep = cliente.cep;
+            cc.codigo_pais = cliente.codigo_pais;
+            //Contatos
+            cc.contato = cliente.contato;
+            cc.telefone1_ddd = cliente.telefone1_ddd;
+            cc.telefone1_numero = cliente.telefone1_numero;
+            cc.telefone2_ddd = cliente.telefone2_ddd;
+            cc.telefone2_numero = cliente.telefone2_numero;
+            cc.fax_ddd = cliente.fax_ddd;
+            cc.fax_numero = cliente.fax_numero;
+            cc.email = cliente.email;
+            cc.homepage = cliente.homepage;
+            cc.observacao = cliente.observacao;
+            cc.inscricao_municipal = cliente.inscricao_municipal;
+            cc.inscricao_estadual = cliente.inscricao_estadual;
+            cc.inscricao_suframa = cliente.inscricao_suframa;
+            cc.pessoa_fisica = cliente.pessoa_fisica;
+            cc.optante_simples_nacional = cliente.optante_simples_nacional;
+            cc.bloqueado = cliente.bloqueado;
+            cc.importado_api = cliente.importado_api;
+
+            tags[] tagsArray = new tags[cliente.cliente_tag.Count()];
+
+            int index = 0;
+            foreach (Cliente_Tag item in cliente.cliente_tag)
+            {
+                tags tg = new tags();
+                tg.tag = item.tag;
+                tagsArray[index] = tg;
+            }
+            cc.tags = tagsArray;
+            
+            return cc;
         }
 
         private Cliente toCliente(clientes_cadastro p, Cliente cliente = null)
@@ -159,7 +360,7 @@ namespace Sync
             cliente.optante_simples_nacional = p.optante_simples_nacional;
             cliente.bloqueado = p.bloqueado;
             cliente.importado_api = p.importado_api;
-            
+
             TagBLL tagBLL = new TagBLL();
 
             foreach (var item in p.tags)
@@ -168,7 +369,7 @@ namespace Sync
                 Tag tg = tagBLL.getTag(item.tag.Trim()).FirstOrDefault();
                 if (tg != null)
                 {
-                    if (cliente.cliente_tag.Where(c =>c.tag == tg.tag1).Count() <= 0)
+                    if (cliente.cliente_tag.Where(c => c.tag == tg.tag1).Count() <= 0)
                     {
                         Cliente_Tag ct = new Cliente_Tag();
                         //ct.Id_cliente = cliente.Id;
@@ -176,7 +377,7 @@ namespace Sync
                         ct.tag = tg.tag1;
                         cliente.cliente_tag.Add(ct);
                     }
-                    
+
                 }
 
             }

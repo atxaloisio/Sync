@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/familias/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL">
+      <s:complexType name="famCadastro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codFamilia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nomeFamilia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="famCadastroArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:famCadastro[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="famListarRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="famListarResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="famCadastro" nillable="true" type="tns:famCadastroArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="famConsultarRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="famConsultarResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codFamilia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nomeFamilia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativo" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="famChave">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="famStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codInt" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cCodStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cDesStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVersionSoapIn" />
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="string" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IncluirFamiliaSoapIn">
+    <wsdl:part name="famCadastro" type="tns:famCadastro" />
+  </wsdl:message>
+  <wsdl:message name="IncluirFamiliaSoapOut">
+    <wsdl:part name="famStatus" type="tns:famStatus" />
+  </wsdl:message>
+  <wsdl:message name="AlterarFamiliaSoapIn">
+    <wsdl:part name="famCadastro" type="tns:famCadastro" />
+  </wsdl:message>
+  <wsdl:message name="AlterarFamiliaSoapOut">
+    <wsdl:part name="famStatus" type="tns:famStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpsertFamiliaSoapIn">
+    <wsdl:part name="famCadastro" type="tns:famCadastro" />
+  </wsdl:message>
+  <wsdl:message name="UpsertFamiliaSoapOut">
+    <wsdl:part name="famStatus" type="tns:famStatus" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirFamiliaSoapIn">
+    <wsdl:part name="famChave" type="tns:famChave" />
+  </wsdl:message>
+  <wsdl:message name="ExcluirFamiliaSoapOut">
+    <wsdl:part name="famStatus" type="tns:famStatus" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarFamiliaSoapIn">
+    <wsdl:part name="famConsultarRequest" type="tns:famConsultarRequest" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarFamiliaSoapOut">
+    <wsdl:part name="famConsultarResponse" type="tns:famConsultarResponse" />
+  </wsdl:message>
+  <wsdl:message name="PesquisarFamiliasSoapIn">
+    <wsdl:part name="famListarRequest" type="tns:famListarRequest" />
+  </wsdl:message>
+  <wsdl:message name="PesquisarFamiliasSoapOut">
+    <wsdl:part name="famListarResponse" type="tns:famListarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FamiliasCadastroSoap">
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IncluirFamilia">
+      <wsdl:input message="tns:IncluirFamiliaSoapIn" />
+      <wsdl:output message="tns:IncluirFamiliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarFamilia">
+      <wsdl:input message="tns:AlterarFamiliaSoapIn" />
+      <wsdl:output message="tns:AlterarFamiliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertFamilia">
+      <wsdl:input message="tns:UpsertFamiliaSoapIn" />
+      <wsdl:output message="tns:UpsertFamiliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirFamilia">
+      <wsdl:input message="tns:ExcluirFamiliaSoapIn" />
+      <wsdl:output message="tns:ExcluirFamiliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarFamilia">
+      <wsdl:input message="tns:ConsultarFamiliaSoapIn" />
+      <wsdl:output message="tns:ConsultarFamiliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PesquisarFamilias">
+      <wsdl:input message="tns:PesquisarFamiliasSoapIn" />
+      <wsdl:output message="tns:PesquisarFamiliasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FamiliasCadastroSoap" type="tns:FamiliasCadastroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLGetVersion" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="string" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncluirFamilia">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLIncluirFamilia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famCadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famStatus" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarFamilia">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLAlterarFamilia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famCadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famStatus" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertFamilia">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLUpsertFamilia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famCadastro" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famStatus" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirFamilia">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLExcluirFamilia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famChave" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famStatus" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarFamilia">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLConsultarFamilia" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famConsultarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famConsultarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PesquisarFamilias">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/familias/?WSDLPesquisarFamilias" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famListarRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/familias/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="famListarResponse" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FamiliasCadastro">
+    <wsdl:port name="FamiliasCadastroSoap" binding="tns:FamiliasCadastroSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/familias/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

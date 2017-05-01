@@ -53,6 +53,7 @@
     <Compile Include="Proxy\CidadesProxy.cs" />
     <Compile Include="Proxy\ClienteProxy.cs" />
     <Compile Include="Proxy\ContaCorrenteProxy.cs" />
+    <Compile Include="Proxy\FamiliaProdutoProxy.cs" />
     <Compile Include="Proxy\FormaPagVendasProxy.cs" />
     <Compile Include="Proxy\IProxy.cs" />
     <Compile Include="Proxy\ParcelasProxy.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Proxy\ProdutoProxy.cs" />
     <Compile Include="Proxy\ProdutosImpostosProxy.cs" />
     <Compile Include="Proxy\Proxy.cs" />
+    <Compile Include="Proxy\UnidadesProxy.cs" />
     <Compile Include="Proxy\VendedoresProxy.cs" />
     <Compile Include="Service References\CategoriaCadastroReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -77,6 +79,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ContaCorrenteCadastroReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FamiliasProdutoReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -159,6 +166,16 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ContaCorrenteCadastroReference\Sync.ContaCorrenteCadastroReference.fin_conta_corrente_pesquisar_resposta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FamiliasProdutoReference\item.wsdl" />
+    <None Include="Service References\FamiliasProdutoReference\Sync.FamiliasProdutoReference.famConsultarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FamiliasProdutoReference\Sync.FamiliasProdutoReference.famListarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FamiliasProdutoReference\Sync.FamiliasProdutoReference.famStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FormaPagVendasReference\item.wsdl" />
@@ -246,6 +263,7 @@
     <WCFMetadataStorage Include="Service References\CidadesCadastroReference\" />
     <WCFMetadataStorage Include="Service References\ClientesCadastroReference\" />
     <WCFMetadataStorage Include="Service References\ContaCorrenteCadastroReference\" />
+    <WCFMetadataStorage Include="Service References\FamiliasProdutoReference\" />
     <WCFMetadataStorage Include="Service References\FormaPagVendasReference\" />
     <WCFMetadataStorage Include="Service References\ParcelasReference\" />
     <WCFMetadataStorage Include="Service References\PedidoVendaProdutoReference\" />
@@ -396,6 +414,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\VendedoresCadastroReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FamiliasProdutoReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FamiliasProdutoReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FamiliasProdutoReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

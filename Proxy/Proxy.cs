@@ -7,11 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Windows.Forms;
+using Utils;
+using Model;
 
 namespace Sync
 {
     public class Proxy : IProxy
     {
+        public Usuario usuario { get; set; }
         public ProgressBar ProgressBar { get; set; }
         public Label Mensagem { get; set; }
         public Label QtdRegistros { get; set; }
@@ -26,8 +29,8 @@ namespace Sync
             
             EndpointAddressBuilder builder = new EndpointAddressBuilder(Adress);
 
-            string app_key = ConfigurationManager.AppSettings["app_key"];
-            string app_secret = ConfigurationManager.AppSettings["app_secret"];
+            string app_key = Parametro.GetParametro("app_key");
+            string app_secret = Parametro.GetParametro("app_secret");
 
             builder.Headers.Add(AddressHeader.CreateAddressHeader("app_key", "", app_key)); // Coloque aqui a sua KEY de acesso
             builder.Headers.Add(AddressHeader.CreateAddressHeader("app_secret", "", app_secret)); // Coloque aqui a SECRET de acesso            
