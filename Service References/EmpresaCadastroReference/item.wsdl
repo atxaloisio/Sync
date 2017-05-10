@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.omie.com.br/api/v1/geral/empresas/?WSDL" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="http://app.omie.com.br/api/v1/geral/empresas/?WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://app.omie.com.br/api/v1/geral/empresas/?WSDL">
+      <s:complexType name="empresas_cadastro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_empresa" nillable="true" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_empresa_integracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cnpj" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="razao_social" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nome_fantasia" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="logradouro" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="endereco" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="endereco_numero" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="complemento" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bairro" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cidade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="estado" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cep" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_pais" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="data_adesao_sn" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefone1_ddd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefone1_numero" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefone2_ddd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefone2_numero" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fax_ddd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fax_numero" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="website" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cnae" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cnae_municipal" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inscricao_estadual" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inscricao_municipal" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inscricao_suframa" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="regime_tributario" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inativa" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gera_nfse" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="optante_simples_nacional" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_codigo_incidencia_tributaria" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_codigo_tipo_contribuicao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_cpf_contador" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_crc_contador" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_usa_contabilidade_terceirizada" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_email_contador" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_codigo_indicador_apropriacao_credito" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_codigo_tipo_atividade" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_natureza_pessoa_juridica" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_codigo_criterio_escrituracao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_junta_comercial" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_matriz" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_nome_contador" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sped_registro_junta_comercial" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="efd_atividade_industrial" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="efd_perfil_arquivo_fiscal" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ecd_codigo_cadastral" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ecd_codigo_instituicao_responsavel" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gera_nfe" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inclusao_data" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="inclusao_hora" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="alteracao_data" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="alteracao_hora" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bloqueado" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdv_sincr_analitica" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dt_adesao_simpnac" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ie_st" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="recibo_ide" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gera_recibo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="recibo_tipo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="recibo_num_vias" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="empresas_cadastroArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:empresas_cadastro[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="empresas_consultar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_empresa" nillable="true" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="empresas_list_request">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros_por_pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="apenas_importado_api" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordenar_por" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ordem_descrescente" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_de" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_por_data_ate" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_inclusao" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="filtrar_apenas_alteracao" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="empresas_list_response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pagina" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_paginas" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_de_registros" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="empresas_cadastro" nillable="true" type="tns:empresas_cadastroArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="omie_fail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="description" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="referer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatal" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultarEmpresaSoapIn">
+    <wsdl:part name="empresas_consultar" type="tns:empresas_consultar" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarEmpresaSoapOut">
+    <wsdl:part name="empresas_cadastro" type="tns:empresas_cadastro" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmpresasSoapIn">
+    <wsdl:part name="empresas_list_request" type="tns:empresas_list_request" />
+  </wsdl:message>
+  <wsdl:message name="ListarEmpresasSoapOut">
+    <wsdl:part name="empresas_list_response" type="tns:empresas_list_response" />
+  </wsdl:message>
+  <wsdl:portType name="EmpresasCadastroSoap">
+    <wsdl:operation name="ConsultarEmpresa">
+      <wsdl:input message="tns:ConsultarEmpresaSoapIn" />
+      <wsdl:output message="tns:ConsultarEmpresaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmpresas">
+      <wsdl:input message="tns:ListarEmpresasSoapIn" />
+      <wsdl:output message="tns:ListarEmpresasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmpresasCadastroSoap" type="tns:EmpresasCadastroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ConsultarEmpresa">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/empresas/?WSDLConsultarEmpresa" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/empresas/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="empresas_consultar" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/empresas/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="empresas_cadastro" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarEmpresas">
+      <soap:operation soapAction="http://app.omie.com.br/api/v1/geral/empresas/?WSDLListarEmpresas" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/empresas/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="empresas_list_request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://app.omie.com.br/api/v1/geral/empresas/?WSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="empresas_list_response" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmpresasCadastro">
+    <wsdl:port name="EmpresasCadastroSoap" binding="tns:EmpresasCadastroSoap">
+      <soap:address location="http://app.omie.com.br/api/v1/geral/empresas/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

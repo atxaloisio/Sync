@@ -10,6 +10,7 @@ using Sync.ProdutosCadastroReference;
 using BLL;
 using Model;
 using System.Windows.Forms;
+using Utils;
 
 namespace Sync
 {
@@ -30,6 +31,72 @@ namespace Sync
         }
 
         public void SyncCadastroProduto(int pagina = -1)
+        {
+            try
+            {
+                SyncLocalToOmie();
+                SyncOmieToLocal(pagina);
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+        }
+
+        private void SyncLocalToOmie()
+        {
+            try
+            {
+                if (Mensagem != null)
+                {
+                    Mensagem.Text = "Sincronizando cadastro de Produtos";
+                    Application.DoEvents();
+                }
+                ProdutoBLL = new ProdutoBLL();
+                List<Produto> produtoList = ProdutoBLL.getProduto(p => p.sincronizar == "S", true);
+
+                if (ProgressBar != null)
+                {
+                    NrTotalRegistro = produtoList.Count();
+                    NrTotalRegistro += 1;
+                    ProgressBar.Maximum = NrTotalRegistro;
+                }
+
+                foreach (Produto item in produtoList)
+                {
+                    RegistroAtual++;
+                    if (ProgressBar != null)
+                    {
+                        ProgressBar.Value = RegistroAtual;
+                        ProgressBar.Refresh();
+                        Application.DoEvents();
+                        if (QtdRegistros != null)
+                        {
+                            QtdRegistros.Text = RegistroAtual.ToString() + " de " + NrTotalRegistro.ToString();
+                            Application.DoEvents();
+                        }
+                    }
+
+                    if (item.codigo_produto <= 0)
+                    {
+                        IncluirProduto(item);
+                    }
+                    else
+                    {
+                        AlterarProduto(item);
+                    }
+
+                }
+                RegistroAtual = 0;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void SyncOmieToLocal(int pagina = -1)
         {
             try
             {
@@ -76,6 +143,11 @@ namespace Sync
                     if (ProdutoBLL.getProduto(p => p.codigo_produto == codigo_Produto_omie).Count <= 0)
                     {
                         Produto Produto = toProduto(item);
+                        if (string.IsNullOrEmpty(Produto.codigo_produto_integracao))
+                        {
+                            Produto.codigo_produto_integracao = Sequence.GetNextVal("sq_produto_sequence").ToString();
+                        }
+
                         ProdutoBLL.AdicionarProduto(Produto);
                     }
 
@@ -97,7 +169,7 @@ namespace Sync
                 if (Convert.ToInt32(resp.total_de_paginas) > pagina)
                 {
                     pagina++;
-                    SyncCadastroProduto(pagina);
+                    SyncOmieToLocal(pagina);
                 }
             }
             catch (Exception)
@@ -107,8 +179,66 @@ namespace Sync
             }
         }
 
-        public void UpdateProduto(Produto produto)
+        public string AlterarProduto(Produto produto)
         {
+            string retorno = string.Empty;
+            try
+            {
+                if (produto != null)
+                {
+                    produto_servico_cadastro prod = fromProduto(produto);
+                    
+                    produto_servico_status resp = soapClient.AlterarProduto(prod);
+
+                    if (resp != null)
+                    {
+                        ProdutoBLL produtoBLL = new ProdutoBLL();
+                        Produto prd = produtoBLL.Localizar(produto.id);
+                        prd.codigo_produto = Convert.ToInt32(resp.codigo_produto);
+                        prd.sincronizar = "N";
+                        ProdutoBLL.AlterarProduto(prd);
+                        retorno = resp.descricao_status;
+                    }
+                    
+                }
+                return retorno;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public string IncluirProduto(Produto produto)
+        {
+            string retorno = string.Empty;
+            try
+            {
+                if (produto != null)
+                {
+                    produto_servico_cadastro prod = fromProduto(produto);
+
+                    produto_servico_status resp = soapClient.IncluirProduto(prod);
+
+                    if (resp != null)
+                    {
+                        ProdutoBLL produtoBLL = new ProdutoBLL();
+                        Produto prd = produtoBLL.Localizar(produto.id);
+                        prd.codigo_produto = Convert.ToInt32(resp.codigo_produto);
+                        prd.sincronizar = "N";
+                        ProdutoBLL.AlterarProduto(prd);
+                        retorno = resp.descricao_status;
+                    }
+
+                }
+                return retorno;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public string ExcluirProduto(Produto produto)
@@ -157,7 +287,58 @@ namespace Sync
             {
 
                 throw;
-            }            
+            }
+        }
+
+        private produto_servico_cadastro fromProduto(Produto p)
+        {
+            produto_servico_cadastro produto = new produto_servico_cadastro()
+            {
+                codigo_produto_integracao = p.codigo_produto_integracao,
+                codigo_produto = p.codigo_produto.ToString(),
+                codigo = p.codigo,
+                descricao = p.descricao,
+                ean = p.ean,
+                ncm = p.ncm,
+                quantidade_estoque = p.quantidade_estoque,
+                quantidade_estoqueSpecified = true,
+                csosn_icms = p.csosn_icms,
+                unidade = p.unidade,
+                valor_unitario = p.valor_unitario,
+                valor_unitarioSpecified = true,
+                cst_icms = p.cst_icms,
+                aliquota_icms = p.aliquota_icms,
+                aliquota_icmsSpecified = true,                
+                red_base_icms = p.red_base_icms,
+                red_base_icmsSpecified = true,
+                aliquota_ibpt = p.aliquota_ibpt,
+                aliquota_ibptSpecified = true,
+                tipoItem = p.tipoItem,
+                cst_pis = p.cst_pis,
+                aliquota_pis = p.aliquota_pis,
+                aliquota_pisSpecified = true,
+                cst_cofins = p.cst_cofins,
+                aliquota_cofins = p.aliquota_cofins,
+                aliquota_cofinsSpecified = true,
+                bloqueado = p.bloqueado,
+                importado_api = p.importado_api,
+                codigo_familia = p.codigo_familia.ToString(),                
+                codInt_familia = p.codInt_familia,
+                descricao_familia = p.descricao_familia,
+                inativo = p.inativo,
+                cest = p.cest,
+                cfop = p.cfop,
+                peso_liq = p.peso_liq,
+                peso_liqSpecified = true,
+                peso_bruto = p.peso_bruto,
+                peso_brutoSpecified = true,
+                estoque_minimo = p.estoque_minimo,
+                estoque_minimoSpecified = false,
+                descr_detalhada = p.descr_detalhada,
+                obs_internas = p.obs_internas
+            };
+
+            return produto;
         }
 
         private Produto toProduto(produto_servico_cadastro p, Int64 id = -1)

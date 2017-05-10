@@ -46,6 +46,7 @@ namespace Sync
             try
             {
                 clientes_list_request filtro = new clientes_list_request();
+                clienteBLL = new ClienteBLL();
 
 
                 if (Mensagem != null)
@@ -134,7 +135,7 @@ namespace Sync
                     Mensagem.Text = "Sincronizando cadastro de Clientes";
                     Application.DoEvents();
                 }
-                                
+                clienteBLL = new ClienteBLL();
                 List<Cliente> ClienteList = clienteBLL.getCliente(p => p.sincronizar == "S", true);
 
                 if (ProgressBar != null)
