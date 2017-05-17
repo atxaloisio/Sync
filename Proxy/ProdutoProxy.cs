@@ -139,9 +139,9 @@ namespace Sync
                 foreach (produto_servico_cadastro item in resp.produto_servico_cadastro)
                 {
                     //chama o metodo que faz o inset da Produto na base.
-                    int codigo_Produto_omie = Convert.ToInt32(item.codigo_produto);
-                    if (ProdutoBLL.getProduto(p => p.codigo_produto == codigo_Produto_omie).Count <= 0)
-                    {
+                    //int codigo_Produto_omie = Convert.ToInt32(item.codigo_produto);
+                    //if (ProdutoBLL.getProduto(p => p.codigo_produto == codigo_Produto_omie).Count <= 0)
+                    //{
                         Produto Produto = toProduto(item);
                         if (string.IsNullOrEmpty(Produto.codigo_produto_integracao))
                         {
@@ -149,7 +149,7 @@ namespace Sync
                         }
 
                         ProdutoBLL.AdicionarProduto(Produto);
-                    }
+                    //}
 
                     RegistroAtual++;
                     if (ProgressBar != null)
@@ -193,10 +193,15 @@ namespace Sync
                     if (resp != null)
                     {
                         ProdutoBLL produtoBLL = new ProdutoBLL();
-                        Produto prd = produtoBLL.Localizar(produto.id);
-                        prd.codigo_produto = Convert.ToInt32(resp.codigo_produto);
-                        prd.sincronizar = "N";
-                        ProdutoBLL.AlterarProduto(prd);
+                        List<Produto> prdList = produtoBLL.getProduto(p => p.id == produto.id, true);
+                        if (prdList.Count()>0)
+                        {
+                            Produto prd = prdList.First();
+                            prd.codigo_produto = Convert.ToInt32(resp.codigo_produto);
+                            prd.sincronizar = "N";
+                            ProdutoBLL.AlterarProduto(prd);
+                        }
+                        
                         retorno = resp.descricao_status;
                     }
                     
