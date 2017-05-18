@@ -139,9 +139,9 @@ namespace Sync
                 foreach (produto_servico_cadastro item in resp.produto_servico_cadastro)
                 {
                     //chama o metodo que faz o inset da Produto na base.
-                    //int codigo_Produto_omie = Convert.ToInt32(item.codigo_produto);
-                    //if (ProdutoBLL.getProduto(p => p.codigo_produto == codigo_Produto_omie).Count <= 0)
-                    //{
+                    int codigo_Produto_omie = Convert.ToInt32(item.codigo_produto);
+                    if (ProdutoBLL.getProduto(p => p.codigo_produto == codigo_Produto_omie).Count <= 0)
+                    {
                         Produto Produto = toProduto(item);
                         if (string.IsNullOrEmpty(Produto.codigo_produto_integracao))
                         {
@@ -149,7 +149,7 @@ namespace Sync
                         }
 
                         ProdutoBLL.AdicionarProduto(Produto);
-                    //}
+                    }
 
                     RegistroAtual++;
                     if (ProgressBar != null)
